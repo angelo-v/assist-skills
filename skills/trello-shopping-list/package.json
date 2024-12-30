@@ -6,7 +6,8 @@
     "trello-shopping-list-assist-skill": "./bin/skill.js"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "jest ./src"
   },
   "keywords": [],
   "author": "",
