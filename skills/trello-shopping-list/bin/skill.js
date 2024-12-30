@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 
-const skill = require("../dist/index.js");
-skill.run();
+const { program } = require("../dist/index.js");
+program.parse(process.argv);

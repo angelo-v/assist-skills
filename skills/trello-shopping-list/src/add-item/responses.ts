@@ -1,0 +1,1 @@
+export const itemAdded = (item: string) => `${item} hinzugefügt`;
