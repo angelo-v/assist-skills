@@ -1,0 +1,24 @@
+{
+  "name": "assist-skills",
+  "description": "A collection of scripts that can be added called by home assistant as shell commands to add skills to assist",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "trello-shopping-list": "npx trello-shopping-list-assist-skill"
+  },
+  "author": {
+    "name": "Angelo Veltens",
+    "email": "inbox+github.com@veltens.org",
+    "url": "https://angelo.veltens.org/profile/card#me"
+  },
+  "license": "MIT",
+  "workspaces": [
+    "skills/*"
+  ],
+  "dependencies": {
+    "trello-shopping-list-assist-skill": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}

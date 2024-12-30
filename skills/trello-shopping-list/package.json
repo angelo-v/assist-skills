@@ -1,0 +1,15 @@
+{
+  "name": "trello-shopping-list-assist-skill",
+  "version": "1.0.0",
+  "main": "index.js",
+  "bin": {
+    "trello-shopping-list-assist-skill": "./bin/skill.js"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "description": ""
+}
