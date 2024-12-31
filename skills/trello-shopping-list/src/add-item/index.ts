@@ -1,7 +1,12 @@
-import { itemAdded } from './responses';
-import { say } from '../say';
+import {itemAdded} from './responses';
+import {say} from '../say';
+import {ShoppingListService} from "../service";
 
 
-export function addItem(item: string) {
+export async function addItem(item: string, listName: string, service: ShoppingListService) {
+    const shoppingList = await service.findShoppingList(
+        listName
+    );
+    await shoppingList.addItem(item.toString());
     say(itemAdded(item));
 }
