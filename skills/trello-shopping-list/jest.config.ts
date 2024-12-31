@@ -10,6 +10,7 @@ const config: Config = {
   coverageDirectory: "coverage",
   coverageProvider: "v8",
   coveragePathIgnorePatterns: ["/src/say.ts"],
+  setupFilesAfterEnv: ["./jest.setup.ts"],
   transform: {
     "^.+.tsx?$": ["ts-jest",{}],
   },
