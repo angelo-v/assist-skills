@@ -17,8 +17,21 @@ describe('addItem', () => {
             getId: () => "1",
             addItem: listAddItem
         } as ShoppingList)
-        await addItem(item, "Einkaufen", {findShoppingList} as ShoppingListService);
+        await addItem(item, {listName: "Einkaufen"}, {findShoppingList} as ShoppingListService);
         expect(listAddItem).toHaveBeenCalledWith("Milch")
+        expect(say).toHaveBeenCalledWith('Milch hinzugefügt');
+    });
+
+    it('should add an item including a prefix', async () => {
+        const item = 'Milch';
+        const findShoppingList = jest.fn();
+        const listAddItem = jest.fn();
+        when(findShoppingList).calledWith("Einkaufen").mockReturnValue({
+            getId: () => "1",
+            addItem: listAddItem
+        } as ShoppingList)
+        await addItem(item, {listName: "Einkaufen", prefix: "🤖"}, {findShoppingList} as ShoppingListService);
+        expect(listAddItem).toHaveBeenCalledWith("🤖 Milch")
         expect(say).toHaveBeenCalledWith('Milch hinzugefügt');
     });
 });

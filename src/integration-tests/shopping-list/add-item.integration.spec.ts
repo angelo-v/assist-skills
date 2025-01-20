@@ -32,7 +32,7 @@ describe('add item to shopping list', () => {
                 },
             ])
             .post(
-                "/checklists/first-shopping-checklist-id/checkItems?name=Banane"
+                "/checklists/first-shopping-checklist-id/checkItems?name=🤖%20Banane"
             )
             .matchHeader("Content-Type", "application/x-www-form-urlencoded")
             .reply(200, {
@@ -49,7 +49,7 @@ describe('add item to shopping list', () => {
                 limits: {},
             });
 
-        await program.parseAsync(["npx", "assist-skills", "shopping-list", "add-item", "Banane", "--list-name", "Shopping List"]);
+        await program.parseAsync(["npx", "assist-skills", "shopping-list", "add-item", "Banane", "--list-name", "Shopping List", "--prefix", "🤖"]);
 
         expect(say).toHaveBeenCalledWith("Banane hinzugefügt");
         scope.done();

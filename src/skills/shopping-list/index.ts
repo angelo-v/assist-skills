@@ -27,6 +27,7 @@ program
     .command('add-item <item>')
     .description('Add an item to the shopping list')
     .requiredOption('--list-name <listName>', 'Name of the shopping list')
-    .action((item, {listName}) => addItem(item, listName, shoppingListService));
+    .option("--prefix <prefix>", "Prefix to add in front of the item, to indicate it has been added by a script")
+    .action((item, options) => addItem(item, options, shoppingListService));
 
 
