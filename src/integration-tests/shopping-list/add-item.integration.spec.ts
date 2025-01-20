@@ -10,7 +10,7 @@ jest.mock("#output/say");
 
 describe('add item to shopping list', () => {
     it('should find the shopping list trello card and add the item to the first checklist', async () => {
-        const scope = nock("https://api.trello.com/1")
+        const scope = nock("https://api.trello.test/1")
             .get("/boards/the-board-id/cards?filter=visible")
             .matchHeader(
                 "Authorization",
