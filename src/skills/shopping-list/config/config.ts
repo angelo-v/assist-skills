@@ -1,7 +1,6 @@
 export interface TrelloConfig {
   trelloApiBaseUrl: string;
   trelloBoardId: string;
-  shoppingListName: string;
   trelloOauthConsumerKey: string;
   trelloOauthToken: string;
 }
@@ -11,12 +10,10 @@ export const getConfig = (env: typeof process.env): TrelloConfig => {
   const trelloOauthConsumerKey = getRequired(env, "TRELLO_OAUTH_CONSUMER_KEY");
   const trelloOauthToken = getRequired(env, "TRELLO_OAUTH_TOKEN");
   const trelloBoardId = getRequired(env, "SHOPPING_LIST_TRELLO_BOARD_ID");
-  const shoppingListName = getRequired(env, "SHOPPING_LIST_TRELLO_CARD_NAME");
 
   return {
     trelloApiBaseUrl,
     trelloBoardId,
-    shoppingListName,
     trelloOauthConsumerKey,
     trelloOauthToken,
   };
