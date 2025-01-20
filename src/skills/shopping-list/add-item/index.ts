@@ -1,5 +1,5 @@
 import {itemAdded} from './responses';
-import {say} from 'output/say';
+import {say} from '#output/say';
 import {ShoppingListService} from "../service";
 
 

@@ -4,9 +4,9 @@ import nock from "nock";
 
 import {program} from "../../index";
 
-import {say} from "output/say";
+import {say} from "#output/say";
 
-jest.mock("output/say");
+jest.mock("#output/say");
 
 describe('add item to shopping list', () => {
     it('should find the shopping list trello card and add the item to the first checklist', async () => {

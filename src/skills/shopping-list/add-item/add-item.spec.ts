@@ -4,9 +4,9 @@ import {when} from 'jest-when'
 import { addItem } from "./index";
 
 import {ShoppingList, ShoppingListService} from "../service";
-import {say} from "output/say";
+import {say} from "#output/say";
 
-jest.mock('output/say');
+jest.mock('#output/say');
 
 describe('addItem', () => {
     it('should add an item to the shopping list', async () => {

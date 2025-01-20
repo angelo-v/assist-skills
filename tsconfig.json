@@ -8,7 +8,7 @@
     "strict": true,                                      
     "skipLibCheck": true,
     "paths": {
-      "output/*": ["./src/output/*"]
+      "#output/*": ["./src/output/*"]
     }
   },
   "include": ["src"],

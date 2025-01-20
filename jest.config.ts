@@ -15,7 +15,7 @@ const config: Config = {
     "^.+.tsx?$": ["ts-jest",{}],
   },
   moduleNameMapper: {
-    "^output/(.+)$": "<rootDir>/src/output/$1"
+    "^#(.+)/(.+)$": "<rootDir>/src/$1/$2"
   }
 };
 
