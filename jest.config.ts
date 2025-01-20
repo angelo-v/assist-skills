@@ -9,7 +9,7 @@ const config: Config = {
   collectCoverage: true,
   coverageDirectory: "coverage",
   coverageProvider: "v8",
-  coveragePathIgnorePatterns: ["/src/output/say.ts"],
+  coveragePathIgnorePatterns: ["/src/output/say.ts", "node_modules"],
   setupFilesAfterEnv: ["./jest.setup.ts"],
   transform: {
     "^.+.tsx?$": ["ts-jest",{}],
