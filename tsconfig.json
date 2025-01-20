@@ -9,7 +9,9 @@
     "skipLibCheck": true,
     "paths": {
       "#output/*": ["./src/output/*"]
-    }
+    },
+    "sourceMap": true,
+    "declaration": true
   },
   "include": ["src"],
 }

@@ -5,6 +5,10 @@
   "bin": {
     "assist-skills": "./bin/skill.js"
   },
+  "files": [
+    "dist/",
+    "!**/*.spec.js"
+  ],
   "scripts": {
     "build": "tsc",
     "test": "jest src",
