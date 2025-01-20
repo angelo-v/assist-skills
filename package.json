@@ -1,11 +1,13 @@
 {
   "name": "assist-skills",
-  "description": "A collection of scripts that can be added called by home assistant as shell commands to add skills to assist",
+  "description": "A CLI application providing skills to Home Assistant via shell command integration",
   "version": "1.0.0",
+  "bin": {
+    "assist-skills": "./bin/skill.js"
+  },
   "scripts": {
-    "build": "npm run build --workspaces",
-    "trello-shopping-list": "npx trello-shopping-list-assist-skill",
-    "test": "npm run test --workspaces"
+    "build": "tsc",
+    "test": "jest src"
   },
   "author": {
     "name": "Angelo Veltens",
@@ -13,13 +15,9 @@
     "url": "https://angelo.veltens.org/profile/card#me"
   },
   "license": "MIT",
-  "workspaces": [
-    "skills/*"
-  ],
   "dependencies": {
     "axios": "^1.7.9",
-    "commander": "^13.0.0",
-    "trello-shopping-list-assist-skill": "^1.0.0"
+    "commander": "^13.0.0"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",

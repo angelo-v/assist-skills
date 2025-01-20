@@ -1,12 +1,12 @@
 import {describe, expect, it, jest} from '@jest/globals';
 import {when} from 'jest-when'
 
-import { addItem } from ".";
+import { addItem } from "./index";
 
-import { say } from '../say';
+import { say } from '../../../say';
 import {ShoppingList, ShoppingListService} from "../service";
 
-jest.mock('../say');
+jest.mock('../../../say');
 
 describe('addItem', () => {
     it('should add an item to the shopping list', async () => {
