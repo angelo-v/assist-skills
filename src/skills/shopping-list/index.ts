@@ -21,9 +21,8 @@ const shoppingListService = new TrelloShoppingListService(
 );
 
 program
-    .name('trello-shopping-list-assist-skill')
-    .description('CLI to manage Trello shopping list')
-    .version('1.0.0');
+    .name('shopping-list')
+    .description('Manage your shopping list')
 program
     .command('add-item <item>')
     .description('Add an item to the shopping list')

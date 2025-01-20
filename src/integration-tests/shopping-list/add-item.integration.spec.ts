@@ -2,7 +2,7 @@ import {describe, it, jest, expect} from "@jest/globals";
 
 import nock from "nock";
 
-import {program} from "../index";
+import {program} from "../../index";
 
 import {say} from "output/say";
 
@@ -49,7 +49,7 @@ describe('add item to shopping list', () => {
                 limits: {},
             });
 
-        await program.parseAsync(["npx", "trello-shopping-list-assist-skill", "add-item", "Banane", "--list-name", "Shopping List"]);
+        await program.parseAsync(["npx", "assist-skills", "shopping-list", "add-item", "Banane", "--list-name", "Shopping List"]);
 
         expect(say).toHaveBeenCalledWith("Banane hinzugefügt");
         scope.done();
