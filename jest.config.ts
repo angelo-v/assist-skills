@@ -9,11 +9,14 @@ const config: Config = {
   collectCoverage: true,
   coverageDirectory: "coverage",
   coverageProvider: "v8",
-  coveragePathIgnorePatterns: ["/src/say.ts"],
+  coveragePathIgnorePatterns: ["/src/output/say.ts"],
   setupFilesAfterEnv: ["./jest.setup.ts"],
   transform: {
     "^.+.tsx?$": ["ts-jest",{}],
   },
+  moduleNameMapper: {
+    "^output/(.+)$": "<rootDir>/src/output/$1"
+  }
 };
 
 export default config;
