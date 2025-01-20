@@ -17,7 +17,10 @@ describe('addItem', () => {
             getId: () => "1",
             addItem: listAddItem
         } as ShoppingList)
-        await addItem(item, {listName: "Einkaufen"}, {findShoppingList} as ShoppingListService);
+        const shoppingListService = {
+            findShoppingList
+        } as ShoppingListService
+        await addItem(item, {listName: "Einkaufen"}, {shoppingListService});
         expect(listAddItem).toHaveBeenCalledWith("Milch")
         expect(say).toHaveBeenCalledWith('Milch hinzugefügt');
     });
@@ -30,7 +33,10 @@ describe('addItem', () => {
             getId: () => "1",
             addItem: listAddItem
         } as ShoppingList)
-        await addItem(item, {listName: "Einkaufen", prefix: "🤖"}, {findShoppingList} as ShoppingListService);
+        const shoppingListService = {
+            findShoppingList
+        } as ShoppingListService
+        await addItem(item, {listName: "Einkaufen", prefix: "🤖"}, {shoppingListService});
         expect(listAddItem).toHaveBeenCalledWith("🤖 Milch")
         expect(say).toHaveBeenCalledWith('Milch hinzugefügt');
     });

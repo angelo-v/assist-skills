@@ -7,9 +7,13 @@ interface Options {
     prefix?: string;
 }
 
+interface Dependencies {
+    shoppingListService: ShoppingListService;
+}
 
-export async function addItem(item: string, {listName, prefix}: Options, service: ShoppingListService) {
-    const shoppingList = await service.findShoppingList(
+
+export async function addItem(item: string, {listName, prefix}: Options, {shoppingListService}: Dependencies) {
+    const shoppingList = await shoppingListService.findShoppingList(
         listName
     );
     await shoppingList.addItem(prefix ? `${prefix} ${item}` : item);

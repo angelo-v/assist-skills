@@ -6,19 +6,23 @@ import axios, {AxiosInstance} from 'axios';
 
 export const program = new Command();
 
-const config = getConfig(process.env);
+function dependencies() {
+    const config = getConfig(process.env);
 
-const trelloClient: AxiosInstance = axios.create({
-    baseURL: config.trelloApiBaseUrl,
-    headers: {
-        Authorization: `OAuth oauth_consumer_key="${config.trelloOauthConsumerKey}", oauth_token="${config.trelloOauthToken}"`,
-    },
-});
+    const trelloClient: AxiosInstance = axios.create({
+        baseURL: config.trelloApiBaseUrl,
+        headers: {
+            Authorization: `OAuth oauth_consumer_key="${config.trelloOauthConsumerKey}", oauth_token="${config.trelloOauthToken}"`,
+        },
+    });
 
-const shoppingListService = new TrelloShoppingListService(
-    config.trelloBoardId,
-    trelloClient
-);
+    const shoppingListService = new TrelloShoppingListService(
+        config.trelloBoardId,
+        trelloClient
+    );
+
+    return {shoppingListService};
+}
 
 program
     .name('shopping-list')
@@ -28,6 +32,6 @@ program
     .description('Add an item to the shopping list')
     .requiredOption('--list-name <listName>', 'Name of the shopping list')
     .option("--prefix <prefix>", "Prefix to add in front of the item, to indicate it has been added by a script")
-    .action((item, options) => addItem(item, options, shoppingListService));
+    .action((item, options) => addItem(item, options, dependencies()));
 
 
