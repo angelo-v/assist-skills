@@ -3,10 +3,20 @@ import {addItem} from './add-item';
 import {getConfig} from "./config/config";
 import {TrelloShoppingListService} from "./trello";
 import axios, {AxiosInstance} from 'axios';
+import {ShoppingListService} from "./service";
 
 export const program = new Command();
 
-function dependencies() {
+export interface Dependencies {
+    shoppingListService: ShoppingListService;
+}
+
+export interface AddItemOptions {
+    listName: string;
+    prefix?: string;
+}
+
+function dependencies(): Dependencies {
     const config = getConfig(process.env);
 
     const trelloClient: AxiosInstance = axios.create({
@@ -32,6 +42,6 @@ program
     .description('Add an item to the shopping list')
     .requiredOption('--list-name <listName>', 'Name of the shopping list')
     .option("--prefix <prefix>", "Prefix to add in front of the item, to indicate it has been added by a script")
-    .action((item, options) => addItem(item, options, dependencies()));
+    .action((item: string, options: AddItemOptions) => addItem(item, options, dependencies()));
 
 

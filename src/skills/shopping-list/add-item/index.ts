@@ -1,18 +1,8 @@
 import {itemAdded} from './responses';
 import {say} from '#output/say';
-import {ShoppingListService} from "../service";
+import {AddItemOptions, Dependencies} from "../index";
 
-interface Options {
-    listName: string;
-    prefix?: string;
-}
-
-interface Dependencies {
-    shoppingListService: ShoppingListService;
-}
-
-
-export async function addItem(item: string, {listName, prefix}: Options, {shoppingListService}: Dependencies) {
+export async function addItem(item: string, {listName, prefix}: AddItemOptions, {shoppingListService}: Dependencies) {
     const shoppingList = await shoppingListService.findShoppingList(
         listName
     );
