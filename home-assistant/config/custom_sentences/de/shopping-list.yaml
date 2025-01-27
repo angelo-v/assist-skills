@@ -1,0 +1,12 @@
+# https://developers.home-assistant.io/docs/voice/intent-recognition/template-sentence-syntax/
+
+language: "de"
+intents:
+  ShoppingListAddItem:
+    data:
+      - sentences:
+          - "schreibe {item} auf die Einkaufsliste"
+          - "{item} einkaufen"
+lists:
+  item:
+    wildcard: true

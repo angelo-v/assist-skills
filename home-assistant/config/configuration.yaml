@@ -9,3 +9,6 @@ frontend:
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
+
+intent_script: !include intent_scripts.yaml
+shell_command: !include shell_commands.yaml

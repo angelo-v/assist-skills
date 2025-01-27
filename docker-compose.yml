@@ -5,6 +5,7 @@ services:
       - ./home-assistant/config:/config
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
+      - ./home-assistant/shell_scripts:/opt/shell_scripts
     privileged: true
     network_mode: host
   assist-skills:

@@ -4,4 +4,6 @@ coverage/
 .env
 home-assistant/config/*.db*
 home-assistant/config/*.log*
-home-assistant/config/.storage
+home-assistant/config/.storage/*
+!home-assistant/config/.storage/core.config
+!home-assistant/config/.storage/assist_pipeline.pipelines

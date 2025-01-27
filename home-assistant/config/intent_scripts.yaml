@@ -1,0 +1,12 @@
+ShoppingListAddItem:
+  action:
+    - action: shell_command.shopping_list_add_item
+      data:
+        item: '{{ item }}'
+        listName: 'Test'
+        prefix: '⚙'
+      response_variable: result
+    - stop: ""
+      response_variable: result
+  speech:
+    text: "{{ action_response.stdout }}"
