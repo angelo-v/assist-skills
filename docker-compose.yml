@@ -1,0 +1,14 @@
+services:
+  homeassistant:
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    volumes:
+      - ./home-assistant/config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    privileged: true
+    network_mode: host
+  assist-skills:
+    build: .
+    network_mode: host
+    env_file:
+      - .env

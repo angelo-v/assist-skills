@@ -2,3 +2,6 @@ node_modules/
 dist/
 coverage/
 .env
+home-assistant/config/*.db*
+home-assistant/config/*.log*
+home-assistant/config/.storage
