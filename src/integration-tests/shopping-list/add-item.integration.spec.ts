@@ -1,11 +1,8 @@
-import {describe, it, jest, expect} from "@jest/globals";
+import {describe, expect, it} from "@jest/globals";
 
 import nock from "nock";
 
 import {build} from "../../app";
-
-
-jest.mock("#output/say");
 
 describe('add item to shopping list', () => {
     it('should find the shopping list trello card and add the item to the first checklist', async () => {
