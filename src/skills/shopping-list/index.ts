@@ -1,20 +1,22 @@
-import {Command} from 'commander';
-import {addItem} from './add-item';
 import {getConfig} from "./config/config";
 import {TrelloShoppingListService} from "./trello";
 import axios, {AxiosInstance} from 'axios';
 import {ShoppingListService} from "./service";
+import { FastifyInstance, FastifyRequest } from "fastify";
+import {addItem} from "./add-item";
 
-export const program = new Command();
 
 export interface Dependencies {
     shoppingListService: ShoppingListService;
 }
 
-export interface AddItemOptions {
-    listName: string;
-    prefix?: string;
+interface AddItemIntent {
+    intent: 'AddItem',
+    item: string,
+    listName: string
+    prefix?: string
 }
+
 
 function dependencies(): Dependencies {
     const config = getConfig(process.env);
@@ -34,14 +36,11 @@ function dependencies(): Dependencies {
     return {shoppingListService};
 }
 
-program
-    .name('shopping-list')
-    .description('Manage your shopping list')
-program
-    .command('add-item <item>')
-    .description('Add an item to the shopping list')
-    .requiredOption('--list-name <listName>', 'Name of the shopping list')
-    .option("--prefix <prefix>", "Prefix to add in front of the item, to indicate it has been added by a script")
-    .action((item: string, options: AddItemOptions) => addItem(item, options, dependencies()));
 
-
+export function shoppingList(app: FastifyInstance) {
+    app.post('/shopping-list', async function (request: FastifyRequest<{ Body: AddItemIntent }>) {
+        const { item, listName, prefix } = request.body
+        const message = await addItem(item, {listName, prefix}, dependencies())
+        return { message }
+    })
+}

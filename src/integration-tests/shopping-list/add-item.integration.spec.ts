@@ -2,9 +2,8 @@ import {describe, it, jest, expect} from "@jest/globals";
 
 import nock from "nock";
 
-import {program} from "../../index";
+import {build} from "../../app";
 
-import {say} from "#output/say";
 
 jest.mock("#output/say");
 
@@ -49,9 +48,24 @@ describe('add item to shopping list', () => {
                 limits: {},
             });
 
-        await program.parseAsync(["npx", "assist-skills", "shopping-list", "add-item", "Banane", "--list-name", "Shopping List", "--prefix", "🤖"]);
+        const app = build()
+        const response = await app.inject({
+            method: 'POST',
+            url: '/shopping-list',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                intent: "AddItem",
+                item: "Banane",
+                listName: "Shopping List",
+                prefix: "🤖"
+            })
+        })
 
-        expect(say).toHaveBeenCalledWith("Banane hinzugefügt");
+        expect(response.statusCode).toEqual(200);
+        expect(response.headers['content-type']).toEqual("application/json; charset=utf-8");
+        expect(response.json()).toEqual({message: "Banane hinzugefügt"});
         scope.done();
     });
 });

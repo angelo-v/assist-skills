@@ -1,12 +1,18 @@
-import {Command} from 'commander';
+import {build} from "./app";
 
-export const program = new Command();
+import * as dotenv from "dotenv";
 
-import {program as shoppingList} from "./skills/shopping-list";
+dotenv.config();
 
-program
-    .name('assist-skills')
-    .description('Collection of skills for Home Assistant')
-    .version('1.0.0');
+const app = build({
+    logger: {
+        level: 'info'
+    }
+})
 
-program.addCommand(shoppingList)
+app.listen({port: 3000}, (err) => {
+    if (err) {
+        app.log.error(err)
+        process.exit(1)
+    }
+})

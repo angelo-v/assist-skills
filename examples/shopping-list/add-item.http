@@ -1,0 +1,9 @@
+POST http://localhost:3000/shopping-list
+Content-Type: application/json
+
+{
+  "intent": "AddItem",
+  "item": "Banana",
+  "listName": "Shopping List",
+  "prefix": "🤖"
+}

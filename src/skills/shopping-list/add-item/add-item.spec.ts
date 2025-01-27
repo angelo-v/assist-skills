@@ -4,9 +4,6 @@ import {when} from 'jest-when'
 import { addItem } from "./index";
 
 import {ShoppingList, ShoppingListService} from "../service";
-import {say} from "#output/say";
-
-jest.mock('#output/say');
 
 describe('addItem', () => {
     it('should add an item to the shopping list', async () => {
@@ -20,9 +17,9 @@ describe('addItem', () => {
         const shoppingListService = {
             findShoppingList
         } as ShoppingListService
-        await addItem(item, {listName: "Einkaufen"}, {shoppingListService});
+        const response = await addItem(item, {listName: "Einkaufen"}, {shoppingListService});
         expect(listAddItem).toHaveBeenCalledWith("Milch")
-        expect(say).toHaveBeenCalledWith('Milch hinzugefügt');
+        expect(response).toEqual('Milch hinzugefügt');
     });
 
     it('should add an item including a prefix', async () => {
@@ -36,8 +33,8 @@ describe('addItem', () => {
         const shoppingListService = {
             findShoppingList
         } as ShoppingListService
-        await addItem(item, {listName: "Einkaufen", prefix: "🤖"}, {shoppingListService});
+        const response = await addItem(item, {listName: "Einkaufen", prefix: "🤖"}, {shoppingListService});
         expect(listAddItem).toHaveBeenCalledWith("🤖 Milch")
-        expect(say).toHaveBeenCalledWith('Milch hinzugefügt');
+        expect(response).toEqual('Milch hinzugefügt');
     });
 });
