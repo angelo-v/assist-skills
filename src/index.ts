@@ -16,3 +16,13 @@ app.listen({port: 3000}, (err) => {
         process.exit(1)
     }
 })
+
+process.on('SIGTERM', async () => {
+    app.log.info("Terminating server due to SIGTERM");
+    await app.close()
+})
+
+process.on('SIGINT', async () => {
+    app.log.info("Terminating server due to SIGINT");
+    await app.close()
+})
