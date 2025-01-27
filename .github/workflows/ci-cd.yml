@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build-test-publish:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,11 +18,32 @@ jobs:
 
       - run: npm ci
       - run: npm run lint
-      - run: npm run build
       - run: npm test
-      - name: Release package to npm
-        uses: JS-DevTools/npm-publish@v3
+
+  build-and-publish:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Available platforms
+        run: echo ${{ steps.buildx.outputs.platforms }}
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
         with:
-          token: ${{ secrets.NPM_TOKEN }}
-          tag: latest
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        run: docker buildx build --push --platform=linux/amd64,linux/arm64,linux/arm/v7 . --tag ghcr.io/angelo-v/assist-skills:latest
 
