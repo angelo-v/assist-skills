@@ -1,7 +1,2 @@
-shopping_list_add_item: >
-  /opt/shell_scripts/skill.sh shopping-list '{
-    "intent": "AddItem",
-    "item": "{{ item }}",
-    "listName": "{{ listName }}",
-    "prefix": "{{ prefix }}"
-  }'
+assist_skills: >
+  /opt/shell_scripts/skill.sh {{ skill }} '{{ args | tojson }}'

@@ -1,10 +1,13 @@
 ShoppingListAddItem:
   action:
-    - action: shell_command.shopping_list_add_item
+    - action: shell_command.assist_skills
       data:
-        item: '{{ item }}'
-        listName: 'Test'
-        prefix: '⚙'
+        skill: shopping-list
+        args:
+          intent: AddItem
+          item: "{{ item }}"
+          listName: Test
+          prefix: '🤖'
       response_variable: result
     - stop: ""
       response_variable: result
