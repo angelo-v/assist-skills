@@ -10,6 +10,7 @@ services:
     network_mode: host
   assist-skills:
     build: .
-    network_mode: host
+    ports:
+      - "3000:3000"
     env_file:
       - .env
